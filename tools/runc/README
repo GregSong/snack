@@ -1,0 +1,6 @@
+Coding Standard
+I follow GNU coding standard for C. Please refer to http://www.gnu.org/prep/standards for detail.
+I follow Google coding standard for C++. Please refer to http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml for detail.
+
+HowTo
+Create a fold under cases which contains source code you want to run under this tools. There is a sample for you to use which is in cases/sample.
