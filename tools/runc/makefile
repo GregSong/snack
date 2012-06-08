@@ -1,25 +1,15 @@
 #######################################
 #   Please DO NOT change this file
 #######################################
+SNACK_BASE ?= undefine
+ifeq (undefine, ${SNACK_BASE})
+$(error Please set SNACK_BASE to the snack dir)
+endif
 
-#Make
-MAKE = make
-# Compiler setting
-CC = gcc
-CXX = g++
-INCLUDE_FLAGS = 
-CFLAGS = $(CC_DEBUG)
+include ${SNACK_BASE}/make_sys/system.mk
 
-.SUFFIXS:
-.SUFFIXS: .cc
-.cc.o:
-	$(CC) -c $(CFLAGS) -o $@ $<
+LIB: SHARED_FLAGS = -fpic
 
-# Linkder setting
-LINK = g++
-LDFLAGS = 
-
-SHARED_LDFLAGS = -shared
 
 SRC = case_base.cc \
       case_mgr.cc
@@ -27,7 +17,7 @@ SRC = case_base.cc \
 OBJ = $(subst .cc,.o, $(SRC))
 
 TARGET = RC
-TARGET_LIB = RC.so 
+TARGET_LIB = libRC.so 
 
 ######################################
 # Generate CASEOBJ and Relevant target
@@ -40,10 +30,10 @@ ALL: $(OBJ) main.o
 	cd cases/sample;$(MAKE);cd ..;
 	cd cases/co;$(MAKE);cd ..;
 	cd cases/co;$(MAKE);cd ..;
-	$(LINK) $(LDFLAGS) $(OBJ) main.o $(CASEOBJ) -o $(TARGET)
+	$(LINK)  $(LDFLAGS) $(OBJ) main.o $(CASEOBJ) -o $(TARGET)
 
-LIB: $(OBJ)
-	$(LINK) $(SHARED_LDFLAGS) $(OBJ) -o $(TARGET_LIB)
+LIB: $(SRC) $(OBJ)
+	$(LINK)  $(SHARED_LDFLAGS) $(OBJ) -o $(TARGET_LIB)
 
 CLEAN:
 	rm -f $(OBJ) main.o
@@ -53,3 +43,5 @@ CLEAN:
 	cd cases/co;$(MAKE) CLEAN;cd ..;
 	cd cases/co;$(MAKE) CLEAN;cd ..;
 
+install:
+	cp libRC.so $(SNACK_BASE)/bin;
