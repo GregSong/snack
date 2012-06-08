@@ -5,7 +5,7 @@ namespace snack
 {
     ucontext_t Coroutine::caller;
     ucontext_t Coroutine::callee;
-    bool       Coroutine::first_run_ = TRUE;
+    bool       Coroutine::first_run = TRUE;
     Coroutine& Coroutine::Create(Function fun,...)
     {
         Coroutine* pco = new Coroutine(fun);
@@ -18,9 +18,9 @@ namespace snack
 
     void Coroutine::Resume()
     { 
-        if ( first_run_ )
+        if ( first_run )
         {
-          first_run_ = FALSE;
+          first_run = FALSE;
           getcontext(&caller);
         }
 
