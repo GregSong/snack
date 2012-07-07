@@ -5,15 +5,18 @@
 #define SNACK_FAILURE 1
 
 #ifndef TRUE
-#define TRUE 0
+#define TRUE 1
 #endif // TRUE
 
 #ifndef FALSE
-#define FALSE 1
+#define FALSE 0
 #endif // FALSE
 
 #define IN
 #define OUT
+
+#define CEMPTY '\0'
+#define SEMPTY ""
 
 #if defined _WIN32 || defined __CYGWIN__
   #ifdef BUILDING_DLL
