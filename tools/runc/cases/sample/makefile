@@ -1,21 +1,15 @@
-#Make
-MAKE = make
-# Compiler setting
-CC = gcc
-CXX = g++
-INCLUDE_FLAGS = -I../..
-CFLAGS = $(CC_DEBUG) $(INCLUDE_FLAGS)
+SNACK_BASE ?= undefine
+ifeq (undefine, ${SNACK_BASE})
+	$(error Please set SNACK_BASE to the snack dir)
+endif
 
-.SUFFIXS:
-.SUFFIXS: .cc
-.cc.o:
-	$(CC) -c $(CFLAGS) -o $@ $<
+include ${SNACK_BASE}/make_sys/system.mk
+include ${SNACK_BASE}/make_sys/target.mk
 
-# Linkder setting
-LINK = g++
-LDFLAGS = 
+INCLUDE_FLAGS = -I${INCLUDE_CASE} -I${INCLUDE_BASE} 
 
-SHARED_LDFLAGS = -shared
+LDFLAGS = -L${SNACK_BIN}
+LIBS = $(LIBCASE)
 
 SRC = sample.cc 
 
@@ -26,8 +20,8 @@ TARGET_LIB =
 
 ALL: $(OBJ)
 
-EXE: $(OBJ) main.o ../../case_base.o ../../case_mgr.o
-	$(LINK) $(LDFLAGS) $(OBJ) ../../case_base.o ../../case_mgr.o main.o -o $(TARGET)
+EXE: $(OBJ) main.o 
+	$(LINK) $(LDFLAGS) $(OBJ) main.o -o $(TARGET) $(LIBS)
 
 CLEAN:
 	rm -f *.o

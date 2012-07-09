@@ -3,7 +3,11 @@ MAKE = make
 # Compiler setting
 CC = gcc
 CXX = g++
-INCLUDE_FLAGS = -I../..
+
+include ${SNACK_BASE}/make_sys/system.mk
+
+INCLUDE_FLAGS = -I${INCLUDE_BASE} -I${SNACK_PATTERN} -I${INCLUDE_CASE} 
+
 CFLAGS = $(CC_DEBUG) $(INCLUDE_FLAGS)
 
 .SUFFIXS:
