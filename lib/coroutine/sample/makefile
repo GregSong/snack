@@ -11,6 +11,7 @@ LDFLAGS = -L${SNACK_CASE} -L${SNACK_COROUTINE} ${LIBS}
 
 
 SRC = countdown.cc \
+	  follow.cc	\
 	  run.cc
 
 OBJ = $(subst .cc,.o, $(SRC))
@@ -20,7 +21,7 @@ LIBS = ${LIBCOROUTINE}  ${LIBCASE}
 TARGET = run
 TARGET_LIB = 
 
-ALL: $(OBJ)  $(LIBS)
+ALL: $(OBJ)  
 	$(LINK) $(OBJ) -o $(TARGET) $(LDFLAGS) 
 
 clean:
