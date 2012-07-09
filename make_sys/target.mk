@@ -5,7 +5,8 @@
 #
 #######################################################
 
-LIBCOROUTINE = -lcoroutine
-LIBCASE      = -lRC
-
+#OPTION
+OPTION_LIB=liboption.so
+COROUTINE_LIB=libcoroutine.so
+CASE_LIB=libRC.so
 
