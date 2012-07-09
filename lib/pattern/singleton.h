@@ -12,11 +12,5 @@ class Singleton
     private:
 };
 
-template< typename T>
-class Manager:public Singleton<Manger<T>>
-{
-    public:
-        
-};
 
 #endif // _SNACK_SINGLETON_H
