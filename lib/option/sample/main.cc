@@ -24,5 +24,15 @@ int main(int argc, char** argv)
     for(int i = 0;i<args.size();++i)
         std::cout<<"Arg1: "<<args[i]<<std::endl;
     OptionMgr::Instance().PrintValue();
+    OptionRef dir = OptionMgr::Instance()["dir"];
+    OptionRef d = OptionMgr::Instance()["d"];
+    OptionRef None = OptionMgr::Instance()["None"];
+    if ( dir != NO_SUCH_OPTION)
+        std::cout<<"Dir: "<<dir.GetRef().GetString()<<std::endl;
+    if ( d != NO_SUCH_OPTION)
+        std::cout<<"Dir: "<<dir.GetRef().GetString()<<std::endl;
+
+    if ( None == NO_SUCH_OPTION)
+        std::cout<<"No such option : None"<<std::endl;
     return 0;
 }

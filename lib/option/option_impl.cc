@@ -175,6 +175,22 @@ namespace snack
             std::cout<<"name: "<<name<<"\t"<<"value: "<<value<<std::endl;
         }
     }
+
+    OptionRef OptionMgr::operator[](const String& opt_name)
+    {
+        if (opt_name.size() == 1)
+        { 
+            OptionsAbbrMap::iterator iter = opt_abb_map_.find(opt_name.c_str()[0]);
+            if ( iter != opt_abb_map_.end() )
+                return opts_[iter->second];
+        } else { 
+            OptionsMap::iterator iter = opt_map_.find(opt_name);
+            if ( iter != opt_map_.end())
+                return opts_[iter->second];
+        }
+        return NO_SUCH_OPTION;
+    }
+
     void OptionMgr::Register(Option& opt)
     {
         Instance().Add(opt);
