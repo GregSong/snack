@@ -1,6 +1,11 @@
 #ifndef _SN_TIME_H
 #define _SN_TIME_H
 
+#include "snack_types.h"
+#include "snack_macro.h"
+
+#include "sn_time_macro.h"
+
 namespace snack
 {
     class SNTime
@@ -8,6 +13,7 @@ namespace snack
         public:
             SNTime();
             SNTime(const SNTime& t);
+            SNTime(const tm*);
 
             static SNTime Now();
 
@@ -22,28 +28,31 @@ namespace snack
             Bool operator<(const SNTime&);
             SNTime& operator=(const SNTime&);
 
-            Int GetDate(){return date_;}
-            Int GetMonth(){return month_;}
+            Int GetDate(){return mday_;}
+            Int GetMonth(){return mon_;}
             Int GetYear(){return year_;}
             Int GetHour(){return hour_;}
-            Int GetMinute(){return minute_;}
-            Int GetSecond(){return second_;}
+            Int GetMin(){return min_;}
+            Int GetSec(){return sec_;}
             Int GetMS(){return ms_;}
             Int GetUS(){return us_;}
-            Int GetWeek(){}
+            Int GetWeekDay(){}
 
 
         private:
             Int time_zone_;
             Int year_;
-            Int month_;
-            Int date_;
+            Int mon_;
+            Int mday_;
+            Int wday_;
+            Int yday_;
             Int hour_;
-            Int minute_;
-            Int second_;
+            Int min_;
+            Int sec_;
+            Int isdst_;
             Int ms_;
             Int us_; 
-    }
+    };
 }
 
 #endif // _SN_TIME_H
