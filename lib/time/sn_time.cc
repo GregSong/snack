@@ -204,8 +204,7 @@ namespace snack
                         }
                         break;
                     case 'H':
-                        idx++;
-                        switch(idx)
+                        switch(fmt[idx])
                         {
                             case '1':
                                 str<<(hour_+time_zone_)%12;
