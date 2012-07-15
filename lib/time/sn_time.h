@@ -28,6 +28,10 @@ namespace snack
             Bool operator<(const SNTime&);
             SNTime& operator=(const SNTime&);
 
+            // For debug only
+            void Print();
+
+            // Get Methods
             Int GetDate(){return mday_;}
             Int GetMonth(){return mon_;}
             Int GetYear(){return year_;}
@@ -37,6 +41,9 @@ namespace snack
             Int GetMS(){return ms_;}
             Int GetUS(){return us_;}
             Int GetWeekDay(){}
+
+            // Set Methods
+            void SetTimeZone(Int zone){time_zone_ = zone;}
 
 
         private:
