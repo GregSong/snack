@@ -42,7 +42,7 @@ namespace snack
 
     void SNTime::Print()
     { 
-        printf("Year:%d Month:%d Date:%d Hour:%d Minute:%d Second:%d\n", year_+1900, mon_+1, mday_, (hour_+time_zone_)%24, min_, sec_); 
+        printf("Year:%d Month:%d Date:%d Hour:%d Minute:%d Second:%d\n", year_, mon_+1, mday_, (hour_+time_zone_)%24, min_, sec_); 
         return;
     }
 
