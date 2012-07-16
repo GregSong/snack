@@ -99,6 +99,7 @@ namespace snack
             OptionRef(const OptionRef& ref):ref_(ref.ref_){};
             Bool operator==(const OptionRef& opt_ref){ return &ref_ == &opt_ref.ref_;}
             Bool operator!=(const OptionRef& opt_ref){ return !(&ref_ == &opt_ref.ref_);}
+            Option* operator->(){return &ref_;}
             // Actually I don't like this idea to use GetRef. It is ugly
             Option& GetRef(){return ref_;}
 
