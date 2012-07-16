@@ -54,11 +54,13 @@ namespace snack
     // Hour: 12 or 24 -- $H1, $H2
     // Minute: 0~59 -- $MI
     // Second: 0~61 -- $SS
+    // Timezone: CCT -- $ZS
     String SNTime::GetString(const String& fmt)
     { 
         //String str;
         stringstream str;
         Int idx = 0;
+        Char prev;
         for(  ; idx < fmt.size(); ++idx)
         {
             if (fmt[idx] == '$' and fmt[idx+1] != '$')
@@ -167,10 +169,18 @@ namespace snack
                                 }
                                 break;
                             case 'D':
+                                str.width(2);
+                                prev = str.fill('0');
                                 str<<mon_;
+                                str.fill(prev);
+                                str.width();
                                 break;
                             case 'I':
+                                str.width(2);
+                                prev = str.fill('0');
                                 str<<min_;
+                                str.fill(prev);
+                                str.width();
                                 break;
                             default:
                                 printf("Sorry, $M%c is not supported\n",fmt[idx]);
@@ -207,18 +217,98 @@ namespace snack
                         switch(fmt[idx])
                         {
                             case '1':
+                                str.width(2);
+                                prev = str.fill('0');
                                 str<<(hour_+time_zone_)%12;
+                                str.fill(prev);
                                 break;
                             case '2':
+                                str.width(2);
+                                prev = str.fill('0');
                                 str<<(hour_+time_zone_)%24;
+                                str.fill(prev);
                                 break;
                             default:
                                 printf("Sorry, $H%c is not supported\n",fmt[idx]);
                                 str<<"$H"<<fmt[idx];
                         }
+                        str.width();
                         break;
                     case 'W':
-                        printf(" Week");
+                        switch(fmt[idx])
+                        {
+                            case 'S':
+                                switch(wday_)
+                                {
+                                    case 0:
+                                        str<<"Sunday";
+                                        break;
+                                    case 1:
+                                        str<<"Monday";
+                                        break;
+                                    case 2:
+                                        str<<"Thuesday";
+                                        break;
+                                    case 3:
+                                        str<<"Wedensday";
+                                        break;
+                                    case 4:
+                                        str<<"Thursday";
+                                        break;
+                                    case 5:
+                                        str<<"Friday";
+                                        break;
+                                    case 6:
+                                        str<<"Saturday";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case 'D':
+                                str<<wday_;
+                                break;
+                            default:
+                                printf("Sorry, $W%c is not supported\n",fmt[idx]);
+                                str<<"$W"<<fmt[idx];
+                                break; 
+                        }
+                        break;
+                    case 'S':
+                        switch(fmt[idx])
+                        {
+                            case 'S':
+                                str.width(2);
+                                prev = str.fill('0');
+                                str<<sec_;
+                                str.fill(prev);
+                                str.width();
+                                break;
+                            default:
+                                printf("Sorry, $S%c is not supported\n",fmt[idx]);
+                                str<<"$S"<<fmt[idx];
+                                break;
+                        }
+                        break;
+                    case 'Z':
+                        switch(fmt[idx])
+                        {
+                            case 'S':
+                                switch(time_zone_)
+                                {
+                                    case 8:
+                                        str<<"CCT";
+                                        break;
+                                    default:
+                                        printf("Sorry, %2d is unknow time zone\n",time_zone_);
+                                        break;
+                                }
+                                break;
+                            default:
+                                printf("Sorry, $Z%c is not supported\n",fmt[idx]);
+                                str<<"$Z"<<fmt[idx];
+                                break;
+                        }
                         break;
                     default:
                         printf("Sorry, $%c is not supported\n",fmt[idx]);

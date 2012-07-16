@@ -10,7 +10,10 @@ int main(int argc, char** argv)
     now.SetTimeZone(CCT);
     now.Print();
 
-    String str = now.GetString("[$YY-$MA-$DS]");
+    String str = now.GetString("[$YY-$MA-$DS $WS CCT $H2:$MI:$SS]");
+    cout<<str<<endl;
+    
+    str = now.GetString("[$Y2-$MD-$DD $WD $ZS $H1:$MI:$SS]");
     cout<<str<<endl;
     return 0;
 }
