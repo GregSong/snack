@@ -9,4 +9,5 @@
 OPTION_LIB=liboption.so
 COROUTINE_LIB=libcoroutine.so
 CASE_LIB=libRC.so
+TIME_LIB=libtime.so
 
