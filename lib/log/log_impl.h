@@ -34,6 +34,8 @@ namespace snack
             Int Log(Int severity, Int fmt_code, ...);
         private:
             // A stream use to write log
+            Int log_level_;
+            String mode_name_;
 
     };
 }
