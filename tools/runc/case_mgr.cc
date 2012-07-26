@@ -12,15 +12,27 @@ namespace snack
     void CaseMgr::Register(CaseBase *c)
     {
         int id = c->GetCaseID();
-        if ( cases_.find(id) == cases_.end())
+        do
         {
-            cases_.insert(pair<int, CaseBase*>(id, c));
-        } else {
-            // Todo: I will build my log system later on
-            std::cout<<"Duplicate Case: "<<id<<std::endl;
-        }
+            if ( cases_.find(id) == cases_.end())
+            {
+                c->set_case_id(id);
+                cases_.insert(pair<int, CaseBase*>(id, c));
+                break;
+            } else {
+                // Todo: I will build my log system later on
+#ifdef _DEBUG_
+                std::cout<<"Duplicate Case: "<<id<<std::endl;
+#endif // _DEBUG_
+                id++;
+            } 
+        }while(1);
         return;
     } 
+    void CaseMgr::ShowAll()
+    {
+        for_each(cases_.begin(), cases_.end(), ShowCase());
+    }
 
     void CaseMgr::Run(int id)
     { 

@@ -22,7 +22,8 @@ int main(int argc, char** argv)
         case_id = atoi(argv[1]);
         CaseMgr::Instance().Run(case_id);
     } else {
-        CaseMgr::Instance().RunAll();
+        //CaseMgr::Instance().RunAll();
+        CaseMgr::Instance().ShowAll();
     }
 
     return SNACK_SUCCESS;

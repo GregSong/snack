@@ -3,6 +3,8 @@
 
 #include <map>
 
+#include "snack_macro.h"
+
 using namespace std;
 
 namespace snack
@@ -18,6 +20,7 @@ namespace snack
             void Register(CaseBase* c);
             void Run(int i);
             void RunAll(); 
+            void ShowAll();
         private:
             typedef std::map<int, CaseBase*> CASES;
             CaseMgr(){};

@@ -18,6 +18,15 @@ namespace snack
             }
 
     };
+
+    class ShowCase
+    {
+        public:
+            void operator()(pair<const int, CaseBase*> &c)
+            {
+                (*c.second).Show();
+            }
+    };
 }
 
 #endif // _SNACK_CASE_UTILS_H
