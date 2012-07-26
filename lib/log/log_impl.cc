@@ -2,7 +2,7 @@
 
 namespace snack
 {
-    void Register(Logger& logger)
+    void LoggerMgr::Register(Logger& logger)
     {
     }
 
