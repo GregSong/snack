@@ -18,7 +18,7 @@ namespace snack
 
     void Coroutine::Resume()
     { 
-        if ( first_run )
+        if ( first_run == TRUE )
         {
           first_run = FALSE;
           getcontext(&caller);

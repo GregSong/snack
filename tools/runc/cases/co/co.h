@@ -9,12 +9,14 @@
 using namespace snack;
 
 #define CO 2 // Case ID
+#define CO_DESC "Test Coroutine"
 
 class Co:public CaseBase
 {
     DECLARECASE(Co, CO)
     public:
         void Run();
+        void Show();
 };
 
 

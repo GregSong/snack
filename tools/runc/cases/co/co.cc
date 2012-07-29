@@ -35,3 +35,9 @@ void Co::Run()
     cout<<"They are back to work"<<endl;
     return;
 }
+
+
+void Co::Show()
+{
+    cout<<"case id: "<<case_id_<<"\t"<<CO_DESC<<endl;
+}

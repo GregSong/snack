@@ -9,12 +9,14 @@
 using namespace snack;
 
 #define SAMPLE 1 // Case ID
+#define SAMPLE_DESC "Sample Comments"
 
 class Sample:public CaseBase
 {
     DECLARECASE(Sample, SAMPLE)
     public:
         void Run();
+        void Show();
 };
 
 
